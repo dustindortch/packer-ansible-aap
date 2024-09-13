@@ -41,6 +41,9 @@ jobs:
       - name: AWS Get Caller Identity
         run: aws sts get-caller-identity
 
+      - name: Packer Init
+        run: packer init .
+
       - name: Packer Format
         run: packer fmt -check .
 
