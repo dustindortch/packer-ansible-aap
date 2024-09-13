@@ -28,7 +28,7 @@ source "amazon-ebs" "img" {
   instance_type = var.instance_type
   region        = var.region
   source_ami    = data.amazon-ami.rhel9.id
-  ssh_username = var.ssh_username
+  ssh_username  = var.ssh_username
 }
 
 build {
