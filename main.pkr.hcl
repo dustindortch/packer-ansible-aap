@@ -62,11 +62,12 @@ build {
     ]
 
     extra_arguments = [
-      "--scp-extra-args",
+      "--ssh-extra-args",
       "-o HostKeyAlgorithms=+ssh-rsa",
       "-o PubkeyAcceptedKeyTypes=+ssh-rsa",
       "-o IdentitiesOnly=yes",
-      "'-O'"
+      "--scp-extra-args",
+      "-O"
     ]
   }
 
