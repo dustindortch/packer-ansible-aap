@@ -14,7 +14,7 @@ packer {
 
 data "amazon-ami" "rhel9" {
   region      = var.region
-  filters     = var.filters
+  filters     = var.ami_filter
   most_recent = true
   owners      = [var.owners]
 }
