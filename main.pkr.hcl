@@ -20,7 +20,7 @@ data "amazon-ami" "rhel9" {
 }
 
 locals {
-  ami_name = "${var.ami_name}_${formatdate("YYYY-MM-DD_hh-mm-ss",timestamp())}"
+  ami_name = "${var.ami_name}_${formatdate("YYYY-MM-DD_hh-mm-ss", timestamp())}"
 }
 
 source "amazon-ebs" "img" {
