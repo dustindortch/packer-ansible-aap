@@ -20,7 +20,7 @@ data "amazon-ami" "rhel9" {
 }
 
 locals {
-  ami_name = "{var.ami_name}_${timestamp()}"
+  ami_name = "${var.ami_name}_${formatdate("YYYY-MM-DD_hh-mm-ss",timestamp())}"
 }
 
 source "amazon-ebs" "img" {
@@ -35,6 +35,7 @@ build {
   name = var.ami_name
 
   hcp_packer_registry {
+    bucket_name = var.ami_name
     description = "Base RHEL 9 AMI with Ansible Automation Platform installer package preloaded."
 
     bucket_labels = {
