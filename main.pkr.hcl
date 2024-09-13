@@ -16,7 +16,7 @@ data "amazon-ami" "rhel9" {
   region      = var.region
   filters     = var.ami_filter
   most_recent = true
-  owners      = [var.owners]
+  owners      = [ var.ami_owner ]
 }
 
 locals {
