@@ -41,6 +41,12 @@ jobs:
       - name: AWS Get Caller Identity
         run: aws sts get-caller-identity
 
+      - name: Install Packer
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: "1.11.2"
+
       - name: Packer Init
         run: packer init .
 
