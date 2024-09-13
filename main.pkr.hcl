@@ -65,7 +65,7 @@ build {
       "--ssh-extra-args",
       "-o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa -o IdentitiesOnly=yes",
       "--scp-extra-args",
-      "-O"
+      "'-O'"
     ]
   }
 
