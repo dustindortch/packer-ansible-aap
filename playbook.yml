@@ -32,6 +32,27 @@
         name: ansible-automation-platform-installer
         state: present
 
+    - name: Install OpenJDK to support loading CA bundle
+      when: ansible_os_family == 'RedHat'
+      ansible.builtin.dnf:
+        name: java
+        state: present
+
+    - name: Download Amazon RDS CA bundle
+      when: ansible_os_family == 'RedHat'
+      ansible.builtin.get_url:
+        dest: /etc/pki/ca-trust/source/anchors/global-bundle.pem
+        mode: '0644'
+        url: https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+      register: aws_rds_ca_bundle_file
+
+    - name: Load Amazon RDS CA bundle
+      when: ansible_os_family == 'RedHat'
+      ansible.builtin.command:
+        cmd: "keytool -printcert -v -file {{ aws_rds_ca_bundle_file.dest }}"
+      register: aws_rds_ca_bundle
+      changed_when: aws_rds_ca_bundle.rc != 0
+
     - name: Unregister subscription for RHEL
       when: ansible_os_family == 'RedHat'
       community.general.redhat_subscription:
